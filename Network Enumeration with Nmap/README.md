@@ -31,16 +31,16 @@
 - `--dns-server <ns>`:	DNS resolution is performed by using a specified name server.
 
 ### Output Options
--oA filename	Stores the results in all available formats starting with the name of "filename".
--oN filename	Stores the results in normal format with the name "filename".
--oG filename	Stores the results in "grepable" format with the name of "filename".
--oX filename	Stores the results in XML format with the name of "filename".
+- -oA filename	Stores the results in all available formats starting with the name of "filename".
+- -oN filename	Stores the results in normal format with the name "filename".
+- -oG filename	Stores the results in "grepable" format with the name of "filename".
+- -oX filename	Stores the results in XML format with the name of "filename".
 
 ### Performance Options
---max-retries <num>	Sets the number of retries for scans of specific ports.
---stats-every=5s	Displays scan's status every 5 seconds.
--v/-vv	Displays verbose output during the scan.
---initial-rtt-timeout 50ms	Sets the specified time value as initial RTT timeout.
---max-rtt-timeout 100ms	Sets the specified time value as maximum RTT timeout.
---min-rate 300	Sets the number of packets that will be sent simultaneously.
--T <0-5>	Specifies the specific timing template.
+- --max-retries <num>	Sets the number of retries for scans of specific ports.
+- --stats-every=5s	Displays scan's status every 5 seconds.
+- -v/-vv	Displays verbose output during the scan.
+- --initial-rtt-timeout 50ms	Sets the specified time value as initial RTT timeout.
+- --max-rtt-timeout 100ms	Sets the specified time value as maximum RTT timeout.
+- --min-rate 300	Sets the number of packets that will be sent simultaneously.
+- -T <0-5>	Specifies the specific timing template.
