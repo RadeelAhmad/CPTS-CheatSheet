@@ -66,7 +66,7 @@ If we now open the HTML file in our browser, we see a clear and structured prese
 
 ---
 
-### NSE:
+### NSE(Nmap Scripting Engine):
 
 There are a total of 14 categories into which these scripts can be divided:
 
