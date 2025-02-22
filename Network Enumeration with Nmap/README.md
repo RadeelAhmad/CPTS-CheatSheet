@@ -2,6 +2,70 @@
 
 **Linux Default TTL:** `64`
 
+### OS without -O Flag:
+
+```jsx
+radeel@htb[/htb]$ sudo nmap 10.129.2.18 -sn -oA host -PE --packet-trace --disable-arp-ping 
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 00:12 CEST
+SENT (0.0107s) ICMP [10.10.14.2 > 10.129.2.18 Echo request (type=8/code=0) id=13607 seq=0] IP [ttl=255 id=23541 iplen=28 ]
+RCVD (0.0152s) ICMP [10.129.2.18 > 10.10.14.2 Echo reply (type=0/code=0) id=13607 seq=0] IP [ttl=128 id=40622 iplen=28 ]
+Nmap scan report for 10.129.2.18
+Host is up (0.086s latency).
+MAC Address: DE:AD:00:00:BE:EF
+Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
+```
+
+***OS -> Windows***
+### How I determined this:
+
+- **TTL (Time-To-Live) Value:**
+    
+    - The ICMP Echo Reply from `10.129.2.18` has a TTL of **128**.
+    - Windows systems typically use a default TTL of **128**.
+    - Linux systems usually have a TTL of **64**, and other systems like Cisco routers use **255**.
+
+---
+
+### Port States:
+
+There are a total of 6 different states for a scanned port we can obtain:
+
+| **State**          | **Description**                                                                                                                                                                                         |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `open`             | This indicates that the connection to the scanned port has been established. These connections can be **TCP connections**, **UDP datagrams** as well as **SCTP associations**.                          |
+| `closed`           | When the port is shown as closed, the TCP protocol indicates that the packet we received back contains an `RST` flag. This scanning method can also be used to determine if our target is alive or not. |
+| `filtered`         | Nmap cannot correctly identify whether the scanned port is open or closed because either no response is returned from the target for the port or we get an error code from the target.                  |
+| `unfiltered`       | This state of a port only occurs during the **TCP-ACK** scan and means that the port is accessible, but it cannot be determined whether it is open or closed.                                           |
+| `open\|filtered`   | If we do not get a response for a specific port, `Nmap` will set it to that state. This indicates that a firewall or packet filter may protect the port.                                                |
+| `closed\|filtered` | This state only occurs in the **IP ID idle** scans and indicates that it was impossible to determine if the scanned port is closed or filtered by a firewall.                                           |
+
+---
+
+### Style Sheets
+
+With the XML output, we can easily create HTML reports that are easy to read, even for non-technical people. This is later very useful for documentation, as it presents our results in a detailed and clear way. To convert the stored results from XML format to HTML, we can use the tool `xsltproc`.
+
+  Saving the Results
+
+```jsx
+radeel@htb[/htb]$ xsltproc target.xml -o target.html
+```
+
+If we now open the HTML file in our browser, we see a clear and structured presentation of our results.
+
+---
+
+### Result Formats:
+
+`Nmap` can save the results in 3 different formats.
+
+- Normal output (`-oN`) with the `.nmap` file extension
+- Grepable output (`-oG`) with the `.gnmap` file extension
+- XML output (`-oX`) with the `.xml` file extension
+
+---
+
 ### Scanning Options
 - `10.10.10.0/24`:	Target network range.
 - `-sn`:	Disables port scanning.
