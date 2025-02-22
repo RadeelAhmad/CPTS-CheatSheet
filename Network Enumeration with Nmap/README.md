@@ -89,6 +89,13 @@ There are a total of 14 categories into which these scripts can be divided:
 
 ---
 
+- `-T 0` / -T paranoid
+- `-T 1` / -T sneaky
+- `-T 2` / -T polite
+- `-T 3` / -T normal
+- `-T 4` / -T aggressive
+- `-T 5` / -T insane
+
 ### EASY - IDS IPS and Firewall Evasion Command: 
 
 ```jsx
